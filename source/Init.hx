@@ -204,6 +204,8 @@ class Init extends FlxState
 
 	public static var filters:Array<BitmapFilter> = []; // the filters the game has active
 	/// initalise filters here
+	
+	 #if !android
 	public static var gameFilters:Map<String, {filter:BitmapFilter, ?onUpdate:Void->Void}> = [
 		"Deuteranopia" => {
 			var matrix:Array<Float> = [
@@ -233,9 +235,14 @@ class Init extends FlxState
 			{filter: new ColorMatrixFilter(matrix)}
 		}
 	];
-
+        #end
+		
 	override public function create():Void
 	{
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+			
 		FlxG.save.bind('lullabyv2', 'hypno');
 		Highscore.load();
 
