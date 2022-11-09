@@ -69,7 +69,7 @@ class CoolUtil
 
 	public static function returnAssetsLibrary(library:String, ?subDir:String = 'assets/images'):Array<String>
 	{
-		#if (sys && !html5)
+		#if (sys && !html5 && windows)
 		//
 		var libraryArray:Array<String> = [];
 		var unfilteredLibrary = FileSystem.readDirectory('$subDir/$library');
@@ -82,7 +82,7 @@ class CoolUtil
 		trace(libraryArray);
 
 		return libraryArray;
-		#elseif html5
+		#elseif android
 		var libraryArray:Array<String> = [];
 		var unfilteredLibrary = Assets.getText('$subDir/$library'); // it's returning as a string, so let's try this
 
