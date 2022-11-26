@@ -4,6 +4,7 @@ uniform sampler2D song;
 
 void main()
 {
+#pragma body
 	// Define some options
     const float stepCount = 128.0;
 	float barWidth = openfl_TextureSize.x / stepCount;
