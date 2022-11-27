@@ -69,10 +69,10 @@ class CoolUtil
 
 	public static function returnAssetsLibrary(library:String, ?subDir:String = 'assets/images'):Array<String>
 	{
-		#if (sys && !html5 && windows)
+		#if android
 		//
 		var libraryArray:Array<String> = [];
-		var unfilteredLibrary = FileSystem.readDirectory('$subDir/$library');
+		var unfilteredLibrary = HSys.readDirectory('$subDir/$library');
 
 		for (folder in unfilteredLibrary)
 		{
@@ -82,19 +82,7 @@ class CoolUtil
 		trace(libraryArray);
 
 		return libraryArray;
-		#elseif android
-		var libraryArray:Array<String> = [];
-		var unfilteredLibrary = Assets.getText('$subDir/$library'); // it's returning as a string, so let's try this
-
-		for (folder in unfilteredLibrary)
-		{
-			if (!folder.contains('.'))
-				libraryArray.push(folder);
-		}
-		trace(libraryArray);
-
-		return libraryArray;
-		#end
+		
 	}
 
 	public static function getAnimsFromTxt(path:String):Array<Array<String>>
