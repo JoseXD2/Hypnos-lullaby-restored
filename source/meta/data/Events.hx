@@ -34,10 +34,8 @@ class Events {
 	public static function obtainEvents() {
 		loadedModules.clear();
 		eventList = [];
-		#if (sys && !html5)
-		var tempEventArray:Array<String> = FileSystem.readDirectory('assets/events');
-		#elseif html5
-		var tempEventArray:Array<String> = Assets.getText('assets/events');
+		#if android
+		var tempEventArray:Array<String> = HSys.readDirectory('assets/events');
 		#end
 		//
 		var futureEvents:Array<String> = [];
@@ -49,10 +47,9 @@ class Events {
 				futureEvents.push(event);
 			} else {
 				if (PlayState.SONG != null && CoolUtil.spaceToDash(PlayState.SONG.song.toLowerCase()) == event) {
-					#if (sys && !html5)
-					var internalEvents:Array<String> = FileSystem.readDirectory('assets/events/$event');
-					#elseif html5
-					var internalEvents:Array<String> = Assets.getText('assets/events/$event');
+					#if android
+					var internalEvents:Array<String> = HSys.readDirectory('assets/events/$event');
+					
 					#end
 					for (subEvent in internalEvents)
 					{
