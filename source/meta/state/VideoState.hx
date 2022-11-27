@@ -1,6 +1,7 @@
 package meta.state;
 
 import vlc.MP4Handler;
+import openfl.utils.Assets;
 #if sys
 import sys.FileSystem;
 #end
@@ -15,7 +16,7 @@ class VideoState extends MusicBeatState {
 
         #if VIDEOS_ALLOWED
         var filepath:String = Paths.video(videoName);
-        if (!FileSystem.exists(filepath)) {
+        if (!Assets.exists(Main.path + filepath)) {
             close();
             return;
         }
