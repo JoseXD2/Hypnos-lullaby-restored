@@ -375,14 +375,14 @@ class PlayState extends MusicBeatState
 		super.create();
 		instance = this;
 
-		#if (sys && !html5)
+		#if (sys && windows)
 		var time = Sys.time();
 		#elseif html5
 		// var time = FlxG.elapsed;
 		var time = haxe.Timer.stamp();
 		#end
 		Events.obtainEvents();
-		#if (sys && !html5)
+		#if (sys && windows)
 		var newtime = Sys.time();
 		#elseif html5
 		// var newtime = FlxG.elasped;
@@ -1100,6 +1100,11 @@ class PlayState extends MusicBeatState
 
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
+		#if android
+		addAndroidControls();
+		androidControls.visible = true;
+		#end
+		
 		if (bronzongMechanic)
 		{
 			keysArray = [
@@ -1120,9 +1125,11 @@ class PlayState extends MusicBeatState
 			];
 		}
 
-		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
-		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
-
+		if (!Init.trueSettings.get('Controller Mode'))
+		{
+			FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
+			FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
+		}
 		moneySound = new FlxSound().loadEmbedded(Paths.sound('MoneyBagGet'), false, true);
 		FlxG.sound.list.add(moneySound);
 
@@ -1662,7 +1669,7 @@ class PlayState extends MusicBeatState
 
 		if ((key >= 0)
 			&& !strumLines.members[playerLane].autoplay
-			&& (FlxG.keys.checkStatus(eventKey, JUST_PRESSED))
+			&& (FlxG.keys.checkStatus(eventKey, JUST_PRESSED) || Init.trueSettings.get('Controller Mode'))
 			&& (FlxG.keys.enabled && !paused && (FlxG.state.active || FlxG.state.persistentUpdate)))
 		{
 			if (generatedMusic && !inCutscene)
