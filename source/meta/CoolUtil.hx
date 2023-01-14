@@ -70,8 +70,6 @@ class CoolUtil
 	public static function returnAssetsLibrary(library:String, ?subDir:String = 'assets/images'):Array<String>
 	{
 		
-		var libraryArray:Array<String>
-		//
 		var libraryArray:Array<String> = [];
 		var unfilteredLibrary = HSys.readDirectory('$subDir/$library');
 
