@@ -27,6 +27,7 @@
 	<assets path="assets" />
 	<assets path="shitpost" library="shitpost" embed="true"/>
 	<assets path="dlls/" rename='' />
+	<assets path="assets/android" if="android"/>
 	<assets path="plugins/" rename='' />
 	<assets path="FE-CrashDialog.exe" type="template" if="windows release" />
 	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bits"/>
@@ -49,8 +50,8 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 
 	<!--Optimise inputs, be careful you will get null errors if you don't use conditionals in your game-->
-	<haxedef name="FLX_NO_MOUSE" if="mobile" />
-	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
+	<haxedef name="FLX_NO_MOUSE" if="desktop" />
+	<haxedef name="FLX_NO_KEYBOARD" if="desktop" />
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 
 	<!--Disable the Flixel core focus lost screen-->
