@@ -41,7 +41,7 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
 	<haxelib name="flixel-ui"/>
- 	<haxelib name="discord_rpc"/>
+ 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
