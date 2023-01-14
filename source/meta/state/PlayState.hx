@@ -60,7 +60,6 @@ import openfl.filters.ShaderFilter;
 import openfl.media.Sound;
 import openfl.utils.Assets;
 import meta.data.dependency.Discord;
-import vlc.MP4Handler;
 
 using StringTools;
 
